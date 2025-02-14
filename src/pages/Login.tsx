@@ -41,38 +41,61 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800 p-4">
-      <Card className="w-full max-w-lg mx-auto glass dark:glass-dark animate-fade-in">
-        <CardHeader className="space-y-1 text-center">
-          <CardTitle className="text-3xl font-bold tracking-tight">EduBalance</CardTitle>
-          <CardDescription>
+    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-black to-blue-950 p-4">
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+      <Card className="w-full max-w-lg mx-auto relative bg-slate-950/60 border-blue-500/20 shadow-xl backdrop-blur-xl animate-fade-in">
+        <CardHeader className="space-y-1 text-center pb-8">
+          <CardTitle className="text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+            EduBalance
+          </CardTitle>
+          <CardDescription className="text-blue-300">
             Sign in to access your educational portal
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="student" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 mb-8">
-              <TabsTrigger value="student" className="space-x-2">
-                <GraduationCap className="w-4 h-4" />
-                <span>Student</span>
+            <TabsList className="grid w-full grid-cols-2 mb-8 bg-slate-900/50">
+              <TabsTrigger 
+                value="student" 
+                className="data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+              >
+                <GraduationCap className="w-4 h-4 mr-2" />
+                Student
               </TabsTrigger>
-              <TabsTrigger value="teacher" className="space-x-2">
-                <BookOpen className="w-4 h-4" />
-                <span>Teacher</span>
+              <TabsTrigger 
+                value="teacher"
+                className="data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+              >
+                <BookOpen className="w-4 h-4 mr-2" />
+                Teacher
               </TabsTrigger>
             </TabsList>
 
             <TabsContent value="student">
               <form onSubmit={(e) => handleLogin("student", e)} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="student-email">Student ID</Label>
-                  <Input id="student-email" placeholder="Enter your student ID" required />
+                  <Label htmlFor="student-email" className="text-blue-300">Student ID</Label>
+                  <Input 
+                    id="student-email" 
+                    placeholder="Enter your student ID" 
+                    required 
+                    className="bg-slate-900/50 border-blue-500/20 text-blue-100 placeholder:text-blue-300/50"
+                  />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="student-password">Password</Label>
-                  <Input id="student-password" type="password" required />
+                  <Label htmlFor="student-password" className="text-blue-300">Password</Label>
+                  <Input 
+                    id="student-password" 
+                    type="password" 
+                    required 
+                    className="bg-slate-900/50 border-blue-500/20 text-blue-100"
+                  />
                 </div>
-                <Button type="submit" className="w-full" disabled={loading}>
+                <Button 
+                  type="submit" 
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white transition-colors" 
+                  disabled={loading}
+                >
                   {loading ? "Signing in..." : "Sign in"}
                 </Button>
               </form>
@@ -81,14 +104,29 @@ export default function Login() {
             <TabsContent value="teacher">
               <form onSubmit={(e) => handleLogin("teacher", e)} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="teacher-email">Email</Label>
-                  <Input id="teacher-email" type="email" placeholder="Enter your email" required />
+                  <Label htmlFor="teacher-email" className="text-blue-300">Email</Label>
+                  <Input 
+                    id="teacher-email" 
+                    type="email" 
+                    placeholder="Enter your email" 
+                    required 
+                    className="bg-slate-900/50 border-blue-500/20 text-blue-100 placeholder:text-blue-300/50"
+                  />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="teacher-password">Password</Label>
-                  <Input id="teacher-password" type="password" required />
+                  <Label htmlFor="teacher-password" className="text-blue-300">Password</Label>
+                  <Input 
+                    id="teacher-password" 
+                    type="password" 
+                    required 
+                    className="bg-slate-900/50 border-blue-500/20 text-blue-100"
+                  />
                 </div>
-                <Button type="submit" className="w-full" disabled={loading}>
+                <Button 
+                  type="submit" 
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white transition-colors" 
+                  disabled={loading}
+                >
                   {loading ? "Signing in..." : "Sign in"}
                 </Button>
               </form>
