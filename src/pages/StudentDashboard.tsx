@@ -89,7 +89,7 @@ export default function StudentDashboard() {
           </h1>
           <Button 
             variant="outline" 
-            className="relative border-blue-500/30 hover:bg-blue-500/10"
+            className="relative border-blue-500/30 bg-slate-900/80 hover:bg-blue-900/30"
             onClick={() => toast({
               title: "Notifications",
               description: "You have 3 new notifications",
@@ -104,7 +104,7 @@ export default function StudentDashboard() {
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {/* Upcoming Meetings Card */}
-          <Card className="bg-slate-900/60 border-blue-500/20 shadow-xl backdrop-blur-xl">
+          <Card className="dark-card">
             <CardHeader>
               <CardTitle className="text-2xl font-bold text-blue-400">
                 Upcoming Meetings
@@ -114,17 +114,17 @@ export default function StudentDashboard() {
               {upcomingMeetings.map((meeting) => (
                 <div 
                   key={meeting.id}
-                  className="flex items-center justify-between p-3 rounded-lg bg-slate-950 border border-blue-500/20 hover:border-blue-400 transition-colors"
+                  className="flex items-center justify-between p-3 rounded-lg bg-slate-900/90 border border-blue-500/20 hover:border-blue-400 dark-hover"
                 >
                   <div className="space-y-1">
-                    <p className="font-medium text-blue-100">{meeting.title}</p>
+                    <p className="font-medium text-blue-300">{meeting.title}</p>
                     <p className="text-sm text-blue-400">
                       {meeting.teacher} • {meeting.time}
                     </p>
                   </div>
                   <Button 
                     size="sm" 
-                    className="bg-blue-500 hover:bg-blue-600 text-slate-900 font-semibold"
+                    className="bg-blue-600 hover:bg-blue-700 text-blue-100 border-none"
                   >
                     Join
                   </Button>
@@ -134,7 +134,7 @@ export default function StudentDashboard() {
           </Card>
 
           {/* Recent Messages Card */}
-          <Card className="bg-slate-900/60 border-blue-500/20 shadow-xl backdrop-blur-xl">
+          <Card className="dark-card">
             <CardHeader>
               <CardTitle className="text-2xl font-bold text-blue-400">
                 Recent Messages
@@ -144,10 +144,10 @@ export default function StudentDashboard() {
               {recentMessages.map((message) => (
                 <div 
                   key={message.id}
-                  className="p-3 rounded-lg bg-slate-950 border border-blue-500/20 hover:border-blue-400 transition-colors space-y-2"
+                  className="p-3 rounded-lg bg-slate-900/90 border border-blue-500/20 dark-hover space-y-2"
                 >
                   <div className="flex justify-between items-start">
-                    <p className="font-medium text-blue-100">{message.from}</p>
+                    <p className="font-medium text-blue-300">{message.from}</p>
                     <span className="text-xs text-blue-400">{message.time}</span>
                   </div>
                   <p className="text-sm text-blue-200">{message.message}</p>
@@ -157,7 +157,7 @@ export default function StudentDashboard() {
           </Card>
 
           {/* Notifications Card */}
-          <Card className="bg-slate-900/60 border-blue-500/20 shadow-xl backdrop-blur-xl">
+          <Card className="dark-card">
             <CardHeader>
               <CardTitle className="text-2xl font-bold text-blue-400">
                 Notifications
@@ -167,10 +167,10 @@ export default function StudentDashboard() {
               {notifications.map((notification) => (
                 <div 
                   key={notification.id}
-                  className="p-3 rounded-lg bg-slate-950 border border-blue-500/20 hover:border-blue-400 transition-colors space-y-2"
+                  className="p-3 rounded-lg bg-slate-900/90 border border-blue-500/20 dark-hover space-y-2"
                 >
                   <div className="flex justify-between items-start">
-                    <p className="font-medium text-blue-100">{notification.title}</p>
+                    <p className="font-medium text-blue-300">{notification.title}</p>
                     <span className="text-xs text-blue-400">{notification.time}</span>
                   </div>
                   <p className="text-sm text-blue-200">{notification.description}</p>
@@ -180,7 +180,7 @@ export default function StudentDashboard() {
           </Card>
 
           {/* Wellness Resources */}
-          <Card className="bg-slate-900/60 border-blue-500/20 shadow-xl backdrop-blur-xl">
+          <Card className="dark-card">
             <CardHeader>
               <CardTitle className="text-2xl font-bold text-blue-400">
                 Wellness Resources
@@ -190,14 +190,14 @@ export default function StudentDashboard() {
               {wellnessResources.map((resource) => (
                 <div 
                   key={resource.id}
-                  className="p-3 rounded-lg bg-slate-950 border border-blue-500/20 hover:border-blue-400 transition-colors"
+                  className="p-3 rounded-lg bg-slate-900/90 border border-blue-500/20 dark-hover"
                 >
                   <div className="flex justify-between items-center">
                     <div>
-                      <p className="font-medium text-blue-100">{resource.title}</p>
+                      <p className="font-medium text-blue-300">{resource.title}</p>
                       <p className="text-sm text-blue-400">{resource.type}</p>
                     </div>
-                    <span className="text-xs text-blue-300 bg-blue-500/10 px-2 py-1 rounded-full border border-blue-500/20">
+                    <span className="text-xs text-blue-300 bg-blue-900/50 px-2 py-1 rounded-full border border-blue-500/20">
                       {resource.duration}
                     </span>
                   </div>
@@ -207,7 +207,7 @@ export default function StudentDashboard() {
           </Card>
 
           {/* Upcoming Deadlines */}
-          <Card className="bg-slate-900/60 border-blue-500/20 shadow-xl backdrop-blur-xl">
+          <Card className="dark-card">
             <CardHeader>
               <CardTitle className="text-2xl font-bold text-blue-400">
                 Upcoming Deadlines
@@ -217,14 +217,14 @@ export default function StudentDashboard() {
               {upcomingDeadlines.map((deadline) => (
                 <div 
                   key={deadline.id}
-                  className="p-3 rounded-lg bg-slate-950 border border-blue-500/20 hover:border-blue-400 transition-colors"
+                  className="p-3 rounded-lg bg-slate-900/90 border border-blue-500/20 dark-hover"
                 >
                   <div className="flex justify-between items-center">
                     <div>
-                      <p className="font-medium text-blue-100">{deadline.title}</p>
+                      <p className="font-medium text-blue-300">{deadline.title}</p>
                       <p className="text-sm text-blue-400">{deadline.subject}</p>
                     </div>
-                    <span className="text-xs text-blue-300 bg-blue-500/10 px-2 py-1 rounded-full border border-blue-500/20">
+                    <span className="text-xs text-blue-300 bg-blue-900/50 px-2 py-1 rounded-full border border-blue-500/20">
                       {deadline.due}
                     </span>
                   </div>
