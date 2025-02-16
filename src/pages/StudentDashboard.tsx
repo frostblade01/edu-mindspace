@@ -104,23 +104,25 @@ export default function StudentDashboard() {
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {/* Upcoming Meetings Card */}
-          <Card className="bg-slate-900/60 border-blue-500/20 shadow-lg backdrop-blur-sm hover:bg-slate-900/70 transition-all">
+          <Card className="bg-slate-950/60 border-blue-500/20 shadow-xl backdrop-blur-xl">
             <CardHeader>
-              <CardTitle className="text-blue-400">Upcoming Meetings</CardTitle>
+              <CardTitle className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                Upcoming Meetings
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {upcomingMeetings.map((meeting) => (
                 <div 
                   key={meeting.id}
-                  className="flex items-center justify-between p-3 rounded-lg bg-slate-800/50 border border-blue-500/10 hover:border-blue-500/30 transition-colors"
+                  className="flex items-center justify-between p-3 rounded-lg bg-slate-900/50 border border-blue-500/20 hover:border-blue-500/30 transition-colors"
                 >
                   <div className="space-y-1">
-                    <p className="font-medium text-blue-100">{meeting.title}</p>
-                    <p className="text-sm text-blue-200/70">
+                    <p className="font-medium text-white">{meeting.title}</p>
+                    <p className="text-sm text-blue-300">
                       {meeting.teacher} • {meeting.time}
                     </p>
                   </div>
-                  <Button size="sm" variant="outline" className="border-blue-500/30 hover:bg-blue-500/20 text-blue-400">
+                  <Button size="sm" variant="outline" className="border-blue-500/30 hover:bg-blue-600 text-blue-400 hover:text-white transition-colors">
                     Join
                   </Button>
                 </div>
@@ -129,64 +131,70 @@ export default function StudentDashboard() {
           </Card>
 
           {/* Recent Messages Card */}
-          <Card className="bg-slate-900/60 border-blue-500/20 shadow-lg backdrop-blur-sm hover:bg-slate-900/70 transition-all">
+          <Card className="bg-slate-950/60 border-blue-500/20 shadow-xl backdrop-blur-xl">
             <CardHeader>
-              <CardTitle className="text-blue-400">Recent Messages</CardTitle>
+              <CardTitle className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                Recent Messages
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {recentMessages.map((message) => (
                 <div 
                   key={message.id}
-                  className="p-3 rounded-lg bg-slate-800/50 border border-blue-500/10 hover:border-blue-500/30 transition-colors space-y-2"
+                  className="p-3 rounded-lg bg-slate-900/50 border border-blue-500/20 hover:border-blue-500/30 transition-colors space-y-2"
                 >
                   <div className="flex justify-between items-start">
-                    <p className="font-medium text-blue-100">{message.from}</p>
-                    <span className="text-xs text-blue-200/70">{message.time}</span>
+                    <p className="font-medium text-white">{message.from}</p>
+                    <span className="text-xs text-blue-300">{message.time}</span>
                   </div>
-                  <p className="text-sm text-blue-200/90">{message.message}</p>
+                  <p className="text-sm text-blue-200">{message.message}</p>
                 </div>
               ))}
             </CardContent>
           </Card>
 
           {/* Notifications Card */}
-          <Card className="bg-slate-900/60 border-blue-500/20 shadow-lg backdrop-blur-sm hover:bg-slate-900/70 transition-all">
+          <Card className="bg-slate-950/60 border-blue-500/20 shadow-xl backdrop-blur-xl">
             <CardHeader>
-              <CardTitle className="text-blue-400">Notifications</CardTitle>
+              <CardTitle className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                Notifications
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {notifications.map((notification) => (
                 <div 
                   key={notification.id}
-                  className="p-3 rounded-lg bg-slate-800/50 border border-blue-500/10 hover:border-blue-500/30 transition-colors space-y-2"
+                  className="p-3 rounded-lg bg-slate-900/50 border border-blue-500/20 hover:border-blue-500/30 transition-colors space-y-2"
                 >
                   <div className="flex justify-between items-start">
-                    <p className="font-medium text-blue-100">{notification.title}</p>
-                    <span className="text-xs text-blue-200/70">{notification.time}</span>
+                    <p className="font-medium text-white">{notification.title}</p>
+                    <span className="text-xs text-blue-300">{notification.time}</span>
                   </div>
-                  <p className="text-sm text-blue-200/90">{notification.description}</p>
+                  <p className="text-sm text-blue-200">{notification.description}</p>
                 </div>
               ))}
             </CardContent>
           </Card>
 
           {/* Wellness Resources */}
-          <Card className="bg-slate-900/60 border-blue-500/20 shadow-lg backdrop-blur-sm hover:bg-slate-900/70 transition-all">
+          <Card className="bg-slate-950/60 border-blue-500/20 shadow-xl backdrop-blur-xl">
             <CardHeader>
-              <CardTitle className="text-blue-400">Wellness Resources</CardTitle>
+              <CardTitle className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                Wellness Resources
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {wellnessResources.map((resource) => (
                 <div 
                   key={resource.id}
-                  className="p-3 rounded-lg bg-slate-800/50 border border-blue-500/10 hover:border-blue-500/30 transition-colors"
+                  className="p-3 rounded-lg bg-slate-900/50 border border-blue-500/20 hover:border-blue-500/30 transition-colors"
                 >
                   <div className="flex justify-between items-center">
                     <div>
-                      <p className="font-medium text-blue-100">{resource.title}</p>
-                      <p className="text-sm text-blue-200/70">{resource.type}</p>
+                      <p className="font-medium text-white">{resource.title}</p>
+                      <p className="text-sm text-blue-300">{resource.type}</p>
                     </div>
-                    <span className="text-xs text-blue-400 bg-blue-500/10 px-2 py-1 rounded-full">
+                    <span className="text-xs text-blue-400 bg-blue-500/10 px-2 py-1 rounded-full border border-blue-500/20">
                       {resource.duration}
                     </span>
                   </div>
@@ -196,22 +204,24 @@ export default function StudentDashboard() {
           </Card>
 
           {/* Upcoming Deadlines */}
-          <Card className="bg-slate-900/60 border-blue-500/20 shadow-lg backdrop-blur-sm hover:bg-slate-900/70 transition-all">
+          <Card className="bg-slate-950/60 border-blue-500/20 shadow-xl backdrop-blur-xl">
             <CardHeader>
-              <CardTitle className="text-blue-400">Upcoming Deadlines</CardTitle>
+              <CardTitle className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                Upcoming Deadlines
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {upcomingDeadlines.map((deadline) => (
                 <div 
                   key={deadline.id}
-                  className="p-3 rounded-lg bg-slate-800/50 border border-blue-500/10 hover:border-blue-500/30 transition-colors"
+                  className="p-3 rounded-lg bg-slate-900/50 border border-blue-500/20 hover:border-blue-500/30 transition-colors"
                 >
                   <div className="flex justify-between items-center">
                     <div>
-                      <p className="font-medium text-blue-100">{deadline.title}</p>
-                      <p className="text-sm text-blue-200/70">{deadline.subject}</p>
+                      <p className="font-medium text-white">{deadline.title}</p>
+                      <p className="text-sm text-blue-300">{deadline.subject}</p>
                     </div>
-                    <span className="text-xs text-blue-400 bg-blue-500/10 px-2 py-1 rounded-full">
+                    <span className="text-xs text-blue-400 bg-blue-500/10 px-2 py-1 rounded-full border border-blue-500/20">
                       {deadline.due}
                     </span>
                   </div>

@@ -34,7 +34,9 @@ export default function TeacherDashboard() {
   return (
     <DashboardLayout menuItems={menuItems} role="teacher">
       <div className="space-y-8 animate-fade-in">
-        <h1 className="text-4xl font-bold">Welcome Back, Teacher!</h1>
+        <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+          Welcome Back, Teacher!
+        </h1>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {/* Dashboard content will go here */}
         </div>
