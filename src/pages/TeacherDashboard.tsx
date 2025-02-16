@@ -1,6 +1,7 @@
 
 import { Home, Users, Calendar, ClipboardList, BookOpen } from "lucide-react";
 import DashboardLayout from "@/components/DashboardLayout";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const menuItems = [
   {
@@ -34,11 +35,20 @@ export default function TeacherDashboard() {
   return (
     <DashboardLayout menuItems={menuItems} role="teacher">
       <div className="space-y-8 animate-fade-in">
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+        <h1 className="text-4xl font-bold text-white">
           Welcome Back, Teacher!
         </h1>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {/* Dashboard content will go here */}
+          <Card className="bg-slate-900 border-blue-600/20 shadow-xl hover:border-blue-600/30 transition-all">
+            <CardHeader>
+              <CardTitle className="text-2xl font-bold text-blue-500">
+                Quick Stats
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-300">Dashboard content coming soon...</p>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </DashboardLayout>
