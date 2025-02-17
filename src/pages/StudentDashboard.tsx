@@ -1,4 +1,3 @@
-
 import { 
   Home, 
   MessageSquare, 
@@ -6,7 +5,11 @@ import {
   BookOpen, 
   Users, 
   Video, 
-  Bell
+  Bell,
+  Clock,
+  Laptop,
+  Star,
+  CheckCircle
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import DashboardLayout from "@/components/DashboardLayout";
@@ -46,35 +49,34 @@ const menuItems = [
   },
 ];
 
-// Simulated data - In a real app, this would come from an API
 const upcomingMeetings = [
-  { id: 1, title: "Mathematics Class", teacher: "Mrs. Smith", time: "10:00 AM", date: "Today" },
-  { id: 2, title: "Physics Lab", teacher: "Mr. Johnson", time: "2:00 PM", date: "Tomorrow" },
-  { id: 3, title: "Study Group", teacher: "Peer Learning", time: "4:00 PM", date: "Tomorrow" },
+  { id: 1, title: "Mathematics Class", teacher: "Mrs. Smith", time: "10:00 AM", date: "Today", subject: "Mathematics", status: "Starting Soon", joinLink: "#" },
+  { id: 2, title: "Physics Lab", teacher: "Mr. Johnson", time: "2:00 PM", date: "Tomorrow", subject: "Physics", status: "Scheduled", joinLink: "#" },
+  { id: 3, title: "Study Group", teacher: "Peer Learning", time: "4:00 PM", date: "Tomorrow", subject: "Group Study", status: "Scheduled", joinLink: "#" },
 ];
 
 const recentMessages = [
-  { id: 1, from: "Mrs. Smith", message: "Don't forget about tomorrow's test!", time: "1 hour ago" },
-  { id: 2, from: "John Doe", message: "Hey, can you help me with the homework?", time: "2 hours ago" },
-  { id: 3, from: "Study Group", message: "Meeting confirmed for tomorrow", time: "3 hours ago" },
+  { id: 1, from: "Mrs. Smith", message: "Don't forget about tomorrow's test!", time: "1 hour ago", avatar: "👩‍🏫", priority: "high" },
+  { id: 2, from: "John Doe", message: "Hey, can you help me with the homework?", time: "2 hours ago", avatar: "👨‍🎓", priority: "medium" },
+  { id: 3, from: "Study Group", message: "Meeting confirmed for tomorrow", time: "3 hours ago", avatar: "👥", priority: "normal" },
 ];
 
 const notifications = [
-  { id: 1, title: "New Assignment Posted", description: "Mathematics - Chapter 5 Problems", time: "30 mins ago" },
-  { id: 2, title: "Meeting Reminder", description: "Physics Lab at 2:00 PM", time: "1 hour ago" },
-  { id: 3, title: "Wellness Check", description: "Complete your daily wellness check", time: "2 hours ago" },
+  { id: 1, title: "New Assignment Posted", description: "Mathematics - Chapter 5 Problems", time: "30 mins ago", type: "assignment", status: "new" },
+  { id: 2, title: "Meeting Reminder", description: "Physics Lab at 2:00 PM", time: "1 hour ago", type: "meeting", status: "urgent" },
+  { id: 3, title: "Wellness Check", description: "Complete your daily wellness check", time: "2 hours ago", type: "wellness", status: "pending" },
 ];
 
 const wellnessResources = [
-  { id: 1, title: "Mindfulness Session", type: "Meditation", duration: "15 min" },
-  { id: 2, title: "Stress Management", type: "Article", duration: "5 min read" },
-  { id: 3, title: "Study Break Exercise", type: "Activity", duration: "10 min" },
+  { id: 1, title: "Mindfulness Session", type: "Meditation", duration: "15 min", category: "Mental Health", status: "Recommended" },
+  { id: 2, title: "Stress Management", type: "Article", duration: "5 min read", category: "Self-Help", status: "New" },
+  { id: 3, title: "Study Break Exercise", type: "Activity", duration: "10 min", category: "Physical Health", status: "Popular" },
 ];
 
 const upcomingDeadlines = [
-  { id: 1, title: "Physics Assignment", due: "Tomorrow", subject: "Physics" },
-  { id: 2, title: "Math Quiz", due: "In 2 days", subject: "Mathematics" },
-  { id: 3, title: "Literature Essay", due: "Next Week", subject: "English" },
+  { id: 1, title: "Physics Assignment", due: "Tomorrow", subject: "Physics", priority: "High", progress: 75 },
+  { id: 2, title: "Math Quiz", due: "In 2 days", subject: "Mathematics", priority: "Medium", progress: 50 },
+  { id: 3, title: "Literature Essay", due: "Next Week", subject: "English", priority: "Low", progress: 25 },
 ];
 
 export default function StudentDashboard() {
@@ -84,9 +86,12 @@ export default function StudentDashboard() {
     <DashboardLayout menuItems={menuItems} role="student">
       <div className="space-y-8 animate-fade-in">
         <div className="flex justify-between items-center">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
-            Welcome Back, Student!
-          </h1>
+          <div>
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+              Welcome Back, Student!
+            </h1>
+            <p className="text-blue-300 mt-2">Here's your learning summary for today</p>
+          </div>
           <Button 
             variant="outline" 
             className="relative border-blue-500/30 bg-slate-900/80 hover:bg-blue-900/30"
@@ -103,10 +108,10 @@ export default function StudentDashboard() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {/* Upcoming Meetings Card */}
           <Card className="dark-card">
-            <CardHeader>
-              <CardTitle className="text-2xl font-bold text-blue-400">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
+              <CardTitle className="text-2xl font-bold text-blue-400 flex items-center gap-2">
+                <Video className="h-6 w-6" />
                 Upcoming Meetings
               </CardTitle>
             </CardHeader>
@@ -114,13 +119,27 @@ export default function StudentDashboard() {
               {upcomingMeetings.map((meeting) => (
                 <div 
                   key={meeting.id}
-                  className="flex items-center justify-between p-3 rounded-lg bg-slate-900/90 border border-blue-500/20 hover:border-blue-400 dark-hover"
+                  className="flex items-center justify-between p-4 rounded-lg bg-slate-900/90 border border-blue-500/20 hover:border-blue-400 dark-hover"
                 >
-                  <div className="space-y-1">
-                    <p className="font-medium text-blue-300">{meeting.title}</p>
-                    <p className="text-sm text-blue-400">
-                      {meeting.teacher} • {meeting.time}
-                    </p>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <p className="font-medium text-blue-300">{meeting.title}</p>
+                      {meeting.status === "Starting Soon" && (
+                        <span className="px-2 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs">
+                          Starting Soon
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-4 text-sm text-blue-400">
+                      <span className="flex items-center gap-1">
+                        <Clock className="h-4 w-4" />
+                        {meeting.time}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Laptop className="h-4 w-4" />
+                        {meeting.subject}
+                      </span>
+                    </div>
                   </div>
                   <Button 
                     size="sm" 
@@ -133,10 +152,10 @@ export default function StudentDashboard() {
             </CardContent>
           </Card>
 
-          {/* Recent Messages Card */}
           <Card className="dark-card">
-            <CardHeader>
-              <CardTitle className="text-2xl font-bold text-blue-400">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
+              <CardTitle className="text-2xl font-bold text-blue-400 flex items-center gap-2">
+                <MessageSquare className="h-6 w-6" />
                 Recent Messages
               </CardTitle>
             </CardHeader>
@@ -144,22 +163,32 @@ export default function StudentDashboard() {
               {recentMessages.map((message) => (
                 <div 
                   key={message.id}
-                  className="p-3 rounded-lg bg-slate-900/90 border border-blue-500/20 dark-hover space-y-2"
+                  className="p-4 rounded-lg bg-slate-900/90 border border-blue-500/20 dark-hover space-y-2"
                 >
                   <div className="flex justify-between items-start">
-                    <p className="font-medium text-blue-300">{message.from}</p>
-                    <span className="text-xs text-blue-400">{message.time}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">{message.avatar}</span>
+                      <div>
+                        <p className="font-medium text-blue-300">{message.from}</p>
+                        <span className="text-xs text-blue-400">{message.time}</span>
+                      </div>
+                    </div>
+                    {message.priority === "high" && (
+                      <span className="px-2 py-1 rounded-full bg-red-500/20 text-red-300 text-xs">
+                        High Priority
+                      </span>
+                    )}
                   </div>
-                  <p className="text-sm text-blue-200">{message.message}</p>
+                  <p className="text-sm text-blue-200 pl-9">{message.message}</p>
                 </div>
               ))}
             </CardContent>
           </Card>
 
-          {/* Notifications Card */}
           <Card className="dark-card">
-            <CardHeader>
-              <CardTitle className="text-2xl font-bold text-blue-400">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
+              <CardTitle className="text-2xl font-bold text-blue-400 flex items-center gap-2">
+                <Bell className="h-6 w-6" />
                 Notifications
               </CardTitle>
             </CardHeader>
@@ -167,22 +196,36 @@ export default function StudentDashboard() {
               {notifications.map((notification) => (
                 <div 
                   key={notification.id}
-                  className="p-3 rounded-lg bg-slate-900/90 border border-blue-500/20 dark-hover space-y-2"
+                  className="p-4 rounded-lg bg-slate-900/90 border border-blue-500/20 dark-hover space-y-2"
                 >
                   <div className="flex justify-between items-start">
-                    <p className="font-medium text-blue-300">{notification.title}</p>
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <p className="font-medium text-blue-300">{notification.title}</p>
+                        {notification.status === "new" && (
+                          <span className="px-2 py-1 rounded-full bg-green-500/20 text-green-300 text-xs">
+                            New
+                          </span>
+                        )}
+                        {notification.status === "urgent" && (
+                          <span className="px-2 py-1 rounded-full bg-red-500/20 text-red-300 text-xs">
+                            Urgent
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-sm text-blue-200">{notification.description}</p>
+                    </div>
                     <span className="text-xs text-blue-400">{notification.time}</span>
                   </div>
-                  <p className="text-sm text-blue-200">{notification.description}</p>
                 </div>
               ))}
             </CardContent>
           </Card>
 
-          {/* Wellness Resources */}
           <Card className="dark-card">
-            <CardHeader>
-              <CardTitle className="text-2xl font-bold text-blue-400">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
+              <CardTitle className="text-2xl font-bold text-blue-400 flex items-center gap-2">
+                <Star className="h-6 w-6" />
                 Wellness Resources
               </CardTitle>
             </CardHeader>
@@ -190,14 +233,31 @@ export default function StudentDashboard() {
               {wellnessResources.map((resource) => (
                 <div 
                   key={resource.id}
-                  className="p-3 rounded-lg bg-slate-900/90 border border-blue-500/20 dark-hover"
+                  className="p-4 rounded-lg bg-slate-900/90 border border-blue-500/20 dark-hover"
                 >
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <p className="font-medium text-blue-300">{resource.title}</p>
-                      <p className="text-sm text-blue-400">{resource.type}</p>
+                  <div className="flex justify-between items-start">
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <p className="font-medium text-blue-300">{resource.title}</p>
+                        {resource.status === "New" && (
+                          <span className="px-2 py-1 rounded-full bg-green-500/20 text-green-300 text-xs">
+                            New
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-4 text-sm text-blue-400">
+                        <span>{resource.type}</span>
+                        <span>•</span>
+                        <span>{resource.category}</span>
+                      </div>
                     </div>
-                    <span className="text-xs text-blue-300 bg-blue-900/50 px-2 py-1 rounded-full border border-blue-500/20">
+                    <span className={`text-xs px-2 py-1 rounded-full border ${
+                      resource.status === "Recommended" 
+                        ? "bg-blue-500/20 text-blue-300 border-blue-500/20" 
+                        : resource.status === "New"
+                        ? "bg-green-500/20 text-green-300 border-green-500/20"
+                        : "bg-red-500/20 text-red-300 border-red-500/20"
+                    }`}>
                       {resource.duration}
                     </span>
                   </div>
@@ -206,10 +266,10 @@ export default function StudentDashboard() {
             </CardContent>
           </Card>
 
-          {/* Upcoming Deadlines */}
           <Card className="dark-card">
-            <CardHeader>
-              <CardTitle className="text-2xl font-bold text-blue-400">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
+              <CardTitle className="text-2xl font-bold text-blue-400 flex items-center gap-2">
+                <CheckCircle className="h-6 w-6" />
                 Upcoming Deadlines
               </CardTitle>
             </CardHeader>
@@ -217,16 +277,34 @@ export default function StudentDashboard() {
               {upcomingDeadlines.map((deadline) => (
                 <div 
                   key={deadline.id}
-                  className="p-3 rounded-lg bg-slate-900/90 border border-blue-500/20 dark-hover"
+                  className="p-4 rounded-lg bg-slate-900/90 border border-blue-500/20 dark-hover"
                 >
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <p className="font-medium text-blue-300">{deadline.title}</p>
-                      <p className="text-sm text-blue-400">{deadline.subject}</p>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <p className="font-medium text-blue-300">{deadline.title}</p>
+                        <div className="flex items-center gap-2 text-sm text-blue-400">
+                          <span>{deadline.subject}</span>
+                          <span>•</span>
+                          <span>{deadline.due}</span>
+                        </div>
+                      </div>
+                      <span className={`text-xs px-2 py-1 rounded-full border ${
+                        deadline.priority === "High" 
+                          ? "bg-red-500/20 text-red-300 border-red-500/20" 
+                          : deadline.priority === "Medium"
+                          ? "bg-yellow-500/20 text-yellow-300 border-yellow-500/20"
+                          : "bg-blue-500/20 text-blue-300 border-blue-500/20"
+                      }`}>
+                        {deadline.priority} Priority
+                      </span>
                     </div>
-                    <span className="text-xs text-blue-300 bg-blue-900/50 px-2 py-1 rounded-full border border-blue-500/20">
-                      {deadline.due}
-                    </span>
+                    <div className="w-full bg-slate-800 rounded-full h-2">
+                      <div 
+                        className="bg-blue-500 h-2 rounded-full transition-all duration-300"
+                        style={{ width: `${deadline.progress}%` }}
+                      />
+                    </div>
                   </div>
                 </div>
               ))}
