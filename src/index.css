@@ -8,7 +8,7 @@
 @layer base {
   :root {
     --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --foreground: 217.2 91.2% 59.8%;
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
@@ -34,8 +34,8 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-inter antialiased;
-    background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #162447 100%);
+    @apply bg-[#0a0f1c] text-blue-400 font-inter antialiased;
+    background: linear-gradient(135deg, #0a0f1c 0%, #111827 50%, #1a1f2e 100%);
     min-height: 100vh;
   }
 }
@@ -61,13 +61,13 @@
 
 /* Glass effect */
 .glass {
-  background: rgba(13, 17, 23, 0.8);
+  background: rgba(10, 15, 28, 0.8);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 .glass-dark {
-  background: rgba(2, 6, 23, 0.95);
+  background: rgba(10, 15, 28, 0.95);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(59, 130, 246, 0.1);
 }
